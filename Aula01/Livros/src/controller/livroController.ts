@@ -7,17 +7,24 @@ export class livroController {
         const { tituloLivro, numeroEdicao, anoLancamento, codigoEditor, codigoAutor }: {
             tituloLivro:string, numeroEdicao:number, anoLancamento:number, codigoEditor:number, codigoAutor:number
         } = req.body;
+        
+        if (!tituloLivro) {
+            res.status(400).json({ message: "Titulo do livro é obrigatório" });
+            return;
+        }
+        
         const livro = new livro_bradley();
         livro.tituloLivro = tituloLivro;
         livro.numeroEdicao = numeroEdicao;
         livro.anoLancamento = anoLancamento;
         livro.codigoEditor = codigoEditor;
         livro.codigoAutor = codigoAutor;
-
+    
         const repo = AppDataSource.getRepository(livro_bradley);
         await repo.save(livro);
         res.json(livro);
     };
+    
 
     async getLivro(req: Request, res: Response) {
         const id = req.params.id;
