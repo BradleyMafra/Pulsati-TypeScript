@@ -10,5 +10,4 @@ export class Usuario {
   
   @Column({ type: "varchar2" })
   sobrenome: string;
-
 }
