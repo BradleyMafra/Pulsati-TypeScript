@@ -9,6 +9,7 @@ AppDataSource.initialize().then(() => {
   
   app.post('/usuarios', new UsuarioController().create);
   app.get('/usuarios/:id', new UsuarioController().get);
+  app.get('/usuarios', new UsuarioController().getAll);
   app.put('/usuarios/:id', new UsuarioController().update);
   app.delete('/usuarios/:id', new UsuarioController().delete);
 

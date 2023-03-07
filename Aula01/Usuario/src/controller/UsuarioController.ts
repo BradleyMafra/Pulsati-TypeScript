@@ -46,4 +46,10 @@ export class UsuarioController {
     await repo.delete(id);
     res.json({ message: "Sucesso ao deletar usuario" });
   }
+
+  async getAll(req: Request, res: Response) {
+    const repo = AppDataSource.getRepository(Usuario);
+    const usuarios = await repo.find();
+    res.json(usuarios);
+  }
 }
